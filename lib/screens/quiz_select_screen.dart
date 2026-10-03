@@ -21,11 +21,15 @@ class QuizSelectScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+          spacing: 24,
           children: [
             OutlinedButton.icon(
               onPressed: backToStart,
               icon: Icon(Icons.arrow_left),
               label: Text('Back'),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.white
+              )
             ),
             QuizPreviewSummary(onQuizSelected: onQuizSelected,),
           ],

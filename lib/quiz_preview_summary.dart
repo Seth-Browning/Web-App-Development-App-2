@@ -10,21 +10,33 @@ class QuizPreviewSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300,
+      height: 400,
       child: SingleChildScrollView(
         child: Column(
-          spacing: 10,
+          spacing: 20,
           children: quizes.map((quiz) {
             return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(quiz.quizName),
-                Text(quiz.quizDescription),
+                Text(quiz.quizName, style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20
+                )),
+                Text(quiz.quizDescription, style: TextStyle(
+                  color: Colors.grey
+                )),
                 OutlinedButton.icon(
                   label: Text('Start'),
                   onPressed: () {
                     onQuizSelected(quiz);
                   },
                   icon: Icon(Icons.arrow_right_alt),
+                  style: OutlinedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 0, horizontal: 12),
+                    foregroundColor: Colors.white
+                  )
                 ),
               ],
             );
