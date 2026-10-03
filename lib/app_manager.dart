@@ -2,32 +2,56 @@ import 'package:adv_basics/screens/questions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:adv_basics/screens/results_screen.dart';
 import 'package:adv_basics/screens/start_screen.dart';
+import 'package:adv_basics/screens/quiz_select_screen.dart';
+import 'package:adv_basics/models/quiz.dart';
 
-import 'package:adv_basics/data/questions.dart';
+import 'package:adv_basics/data/quizes.dart';
 
-class Quiz extends StatefulWidget {
-  const Quiz({super.key});
+class AppManager extends StatefulWidget {
+  const AppManager({super.key});
 
   @override
-  State<Quiz> createState() {
-    return _QuizState();
+  State<AppManager> createState() {
+    return _AppManagerState();
   }
 }
 
-class _QuizState extends State<Quiz> {
+class _AppManagerState extends State<AppManager> {
 
   List<String> selectedAnswers = [];
   Widget? activeScreen;
 
   @override
   void initState() {
-    activeScreen = StartScreen(switchScreen);
+    activeScreen = StartScreen(startToQuizSelect);
     super.initState();
+  }
+
+  void toStart() {
+    setState(() {
+      activeScreen = StartScreen(startToQuizSelect);
+    });
+  }
+
+  void startToQuizSelect() {
+    setState(() {
+      activeScreen = QuizSelectScreen(backToStart: toStart, onQuizSelected: quizSelectedToBeTaken);
+    });
+  }
+
+  void quizSelectedToBeTaken(Quiz q) {
+    setState(() {
+      activeScreen = QuestionsScreen(p, quiz: q);
+    });
+  }
+
+  void p(String s) {
+    print(s);
   }
 
   void switchScreen() {
     setState(() {
-      activeScreen = QuestionsScreen(chooseAnswer);
+      // activeScreen = QuestionsScreen(chooseAnswer);
     });
   }
 
