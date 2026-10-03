@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:adv_basics/data/quizes.dart';
 import 'package:adv_basics/questions_summary.dart';
+import 'package:adv_basics/models/quiz.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen(this.chosenAnswers, this.restartScreen, {super.key});
+  const ResultsScreen(this.chosenAnswers, this.restartScreen, {super.key, required this.referenceQuiz});
 
   final List<String> chosenAnswers;
   final void Function() restartScreen;
+  final Quiz referenceQuiz;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
+    final questions = referenceQuiz.questions;
 
     for (int i = 0; i < chosenAnswers.length; i++) {
       summary.add({
@@ -26,7 +29,7 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(context) {
     final summaryData = getSummaryData();
-    final numTotalQuestions = questions.length;
+    final numTotalQuestions = referenceQuiz.questions.length;
     final numCorrectQuestions = summaryData.where((data) {
       return data['correct_answer'] == data['user_answer'];
     }).length;

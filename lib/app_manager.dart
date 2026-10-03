@@ -1,9 +1,10 @@
-import 'package:adv_basics/screens/questions_screen.dart';
+import 'package:adv_basics/screens/quiz/questions_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:adv_basics/screens/results_screen.dart';
+import 'package:adv_basics/screens/quiz/results_screen.dart';
 import 'package:adv_basics/screens/start_screen.dart';
 import 'package:adv_basics/screens/quiz_select_screen.dart';
 import 'package:adv_basics/models/quiz.dart';
+import 'package:adv_basics/screens/quiz/quiz_manager.dart';
 
 import 'package:adv_basics/data/quizes.dart';
 
@@ -19,6 +20,7 @@ class AppManager extends StatefulWidget {
 class _AppManagerState extends State<AppManager> {
 
   List<String> selectedAnswers = [];
+  Quiz? currentQuiz;
   Widget? activeScreen;
 
   @override
@@ -41,7 +43,8 @@ class _AppManagerState extends State<AppManager> {
 
   void quizSelectedToBeTaken(Quiz q) {
     setState(() {
-      activeScreen = QuestionsScreen(p, quiz: q);
+      activeScreen = QuizManager(currentQuiz: q, onFinishResult: toStart,);
+      currentQuiz = q;
     });
   }
 
@@ -55,18 +58,18 @@ class _AppManagerState extends State<AppManager> {
     });
   }
 
-  void chooseAnswer(String answer) {
-    selectedAnswers.add(answer);
+  // void chooseAnswer(String answer) {
+  //   selectedAnswers.add(answer);
 
-    if (selectedAnswers.length == questions.length) {
-      setState(() {
-        activeScreen = ResultsScreen(selectedAnswers, () {
-          selectedAnswers = [];
-          switchScreen();
-        });
-      });
-    }
-  }
+  //   if (selectedAnswers.length == questions.length) {
+  //     setState(() {
+  //       activeScreen = ResultsScreen(selectedAnswers, () {
+  //         selectedAnswers = [];
+  //         switchScreen();
+  //       });
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(context) {

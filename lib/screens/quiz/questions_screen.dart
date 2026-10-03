@@ -6,10 +6,10 @@ import 'package:adv_basics/models/quiz.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen(this.onSelectAnswer, {super.key, required this.quiz});
+  QuestionsScreen({super.key, required this.quiz, required this.onQuestionsFinished});
 
-  final void Function(String answer) onSelectAnswer;
   final Quiz quiz;
+  final void Function(Quiz q, List<String> answers) onQuestionsFinished;
 
   @override
   State<QuestionsScreen> createState() {
@@ -18,10 +18,15 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionsScreen> {
+  final List<String> selectedAnswers = [];
   var currentQuestionIndex = 0;
 
   void answerQuestion(String selectedAnswer) {
-    widget.onSelectAnswer(selectedAnswer);
+    selectedAnswers.add(selectedAnswer);
+    if (currentQuestionIndex + 1 >= widget.quiz.questions.length) {
+      widget.onQuestionsFinished(widget.quiz, selectedAnswers);
+      return;
+    }
 
     setState(() {
       currentQuestionIndex++;
