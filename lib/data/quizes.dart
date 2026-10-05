@@ -56,20 +56,52 @@ const quizes = [
       QuizQuestion('How is code written?', [
         'Line by line',
         'Block by block',
-        'Column by column'
+        'Column by column',
       ]),
-      QuizQuestion('If you only want code to run when a condition is satisfied, which statement should you use?', [
-        'If statement',
-        'While statement',
-        'Return statement',
-        'Try statement'
-      ]),
+      QuizQuestion(
+        'If you only want code to run when a condition is satisfied, which statement should you use?',
+        [
+          'If statement',
+          'While statement',
+          'Return statement',
+          'Try statement',
+        ],
+      ),
       QuizQuestion('What is a container of information called?', [
         'Variable',
         'Class',
         'Method',
-        'Argument'
+        'Argument',
+      ]),
+    ],
+  ),
+  Quiz(
+    quizName: 'Boolean Logic',
+    quizDescription: 'Review boolean logic.',
+    questions: [
+      QuizQuestion('When is the logical AND true?', [
+        'When both inputs are TRUE',
+        'When either input is TRUE',
+        'When at least one input is FALSE',
+        'AND is never TRUE',
+      ]),
+      QuizQuestion('When is the expression A+B FALSE?', [
+        'When both A and B are FALSE',
+        'When both A and B are TRUE',
+        'When A and B are not the same',
+        'Whenever A is TRUE'
+      ]),
+      QuizQuestion('Which expression is equivalent to (A+B)A?', [
+        'A',
+        'A+B',
+        'B',
+        '!(AB)'
+      ]),
+      QuizQuestion('What is the result of any boolean value OR\'ed with 1?', [
+        '1',
+        '0',
+        'Cannot be determined'
       ])
-    ]
+    ],
   ),
 ];

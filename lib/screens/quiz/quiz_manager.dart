@@ -45,21 +45,20 @@ class _QuizManagerState extends State<QuizManager> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return activeWidget ??
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('An error has occured'),
-              OutlinedButton.icon(
-                label: Text('Back'),
-                onPressed: fallbackFinish,
-                icon: Icon(Icons.arrow_left),
-              ),
-            ],
-          ),
-        );
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text('An error has occured'),
+            OutlinedButton.icon(
+              label: Text('Back'),
+              onPressed: fallbackFinish,
+              icon: Icon(Icons.arrow_left),
+            ),
+          ],
+        ),
+      );
   }
 }
