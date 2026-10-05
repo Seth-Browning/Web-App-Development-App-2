@@ -1,7 +1,5 @@
-import 'package:adv_basics/screens/quiz/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:adv_basics/models/quiz.dart';
-import 'package:adv_basics/screens/quiz/questions_screen.dart';
 
 class QuizStartScreen extends StatelessWidget {
   const QuizStartScreen({
